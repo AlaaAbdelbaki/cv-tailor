@@ -127,6 +127,7 @@ def make_env() -> jinja2.Environment:
         comment_end_string="}",
         trim_blocks=True,
         lstrip_blocks=True,
+        keep_trailing_newline=True,  # an include ending in a % comment would otherwise swallow the next line
         autoescape=False,
     )
     env.filters["ttlist"] = ttlist

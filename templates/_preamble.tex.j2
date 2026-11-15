@@ -1,0 +1,37 @@
+% Shared preamble for cv.tex.j2 and cover_letter.tex.j2 (loaded right after \documentclass)
+
+% --- Text extraction (ATS) --------------------------------------------------
+% Map every glyph to Unicode so copied/parsed text is correct (accents, ligatures).
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% --- Language: hyphenation, typography, driven by "lang" in the JSON ----------
+\usepackage[\VAR{babel_lang}]{babel}
+\BLOCK{ if babel_lang == "french" }
+\frenchsetup{StandardLists=true} % keep the class's bullet style instead of French dashes
+\BLOCK{ endif }
+
+% --- Monospaced font for technology lists -----------------------------------
+% Inconsolata (vector) instead of the default bitmap typewriter font.
+\usepackage[varqu,scaled=0.95]{zi4}
+
+% --- Header icons: visible, but extracted as plain spaces ---------------------
+% FontAwesome glyphs otherwise come out as junk characters (e.g. a stray letter) when an
+% ATS parses the PDF, right next to the phone number and email address.
+% Glyph names come from fontawesome{one,two,three}.enc; none of them is a normal text glyph.
+% pdfTeX splits names at "_" (map_marker = map + marker), so the first part must be mapped too.
+\pdfglyphtounicode{phone}{0020}         % \faPhone
+\pdfglyphtounicode{mobile_phone}{0020}  % \faMobile
+\pdfglyphtounicode{map}{0020}           % \faMapMarker (map_marker)
+\pdfglyphtounicode{map_marker}{0020}    % \faMapMarker
+\pdfglyphtounicode{envelope_alt}{0020}  % \faEnvelope
+\pdfglyphtounicode{envelope}{0020}      % \faEnvelopeO
+\pdfglyphtounicode{github}{0020}        % \faGithub
+\pdfglyphtounicode{github_sign}{0020}   % \faGithubSquare
+\pdfglyphtounicode{linkedin}{0020}      % \faLinkedin
+\pdfglyphtounicode{linkedin_sign}{0020} % \faLinkedinSquare
+\pdfglyphtounicode{globe}{0020}         % \faGlobe
+\pdfglyphtounicode{link}{0020}          % \faLink
+\pdfglyphtounicode{external_link}{0020} % \faExternalLink
+\pdfglyphtounicode{home}{0020}          % \faHome
+\pdfglyphtounicode{twitter}{0020}       % \faTwitter

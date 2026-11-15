@@ -71,7 +71,7 @@ python scripts/render.py applications/<folder>
 | `schema/cv.schema.json` | JSON Schema for master and tailored files |
 | `scripts/render.py` | Validates JSON, fills the templates, compiles PDFs with pdflatex |
 | `templates/cv.tex.j2`, `cover_letter.tex.j2` | Jinja2 + LaTeX templates (`\VAR{}` inserts a value, `\BLOCK{}` adds logic) |
-| `templates/_header.tex.j2`, `_language.tex.j2` | Shared header and language setup |
+| `templates/_header.tex.j2`, `_preamble.tex.j2` | Shared header; shared preamble (language, fonts, ATS-friendly text) |
 | `templates/developercv.cls` | LaTeX class used for the layout |
 
 ## Credits
