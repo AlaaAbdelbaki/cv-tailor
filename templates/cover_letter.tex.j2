@@ -1,0 +1,43 @@
+%----------------------------------------------------------------------------------------
+% Cover letter template (Jinja2 + LaTeX), same class and header as cv.tex.j2.
+%----------------------------------------------------------------------------------------
+\documentclass[11pt]{developercv}
+\BLOCK{ include "_language.tex.j2" }
+\setlength{\parskip}{0.8em}
+
+\begin{document}
+
+{\fontsize{9}{11}\selectfont
+\BLOCK{ include "_header.tex.j2" }
+}
+
+\vspace{4pt}
+\leavevmode\Vhrulefill
+\vspace{4pt}
+
+\BLOCK{ if cover_letter.date }
+\hfill \VAR{cover_letter.date}
+
+\BLOCK{ endif }
+\BLOCK{ if cover_letter.recipient }
+\BLOCK{ for line in cover_letter.recipient }
+\VAR{line}\BLOCK{ if not loop.last }\\\BLOCK{ endif }
+
+\BLOCK{ endfor }
+\BLOCK{ endif }
+
+\BLOCK{ if cover_letter.subject }
+\textbf{\VAR{cover_letter.subject}}
+
+\BLOCK{ endif }
+\VAR{cover_letter.greeting}
+
+\BLOCK{ for para in cover_letter.paragraphs }
+\VAR{para}
+
+\BLOCK{ endfor }
+\VAR{cover_letter.closing}
+
+\medskip
+\textbf{\VAR{basics.name}}
+\end{document}

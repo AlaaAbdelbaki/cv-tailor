@@ -1,0 +1,22 @@
+# --- Personal data: never commit ---
+data/master_cv.json
+applications/
+# Raw .tex files (e.g. your original CV). The real templates are *.tex.j2.
+templates/*.tex
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.xdv
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+build/
+
+# Python
+__pycache__/
+*.pyc
+
+# Local Claude Code settings
+.claude/settings.local.json

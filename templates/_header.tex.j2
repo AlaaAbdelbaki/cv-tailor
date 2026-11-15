@@ -1,0 +1,24 @@
+\begin{minipage}[t]{0.5\textwidth}
+    \vspace{-\baselineskip} % Required for vertically aligning minipages
+
+    { \fontsize{16}{20} \textcolor{black}{\textbf{\MakeUppercase{\VAR{basics.name}}}}}
+
+    \vspace{6pt}
+
+    {\Large \VAR{basics.title or ""}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.2\textwidth}
+    \vspace{-\baselineskip}
+
+\BLOCK{ for c in contact_col1 }
+    \icon{\VAR{c.icon}}{11}{\VAR{c.text}}\\
+\BLOCK{ endfor }
+\end{minipage}
+\begin{minipage}[t]{0.27\textwidth}
+    \vspace{-\baselineskip}
+
+\BLOCK{ for c in contact_col2 }
+    \icon{\VAR{c.icon}}{11}{\VAR{c.text}}\\
+\BLOCK{ endfor }
+\end{minipage}

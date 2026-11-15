@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CV data (master or tailored)",
+  "type": "object",
+  "required": ["basics"],
+  "additionalProperties": false,
+  "$defs": {
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "strings": { "type": "array", "items": { "type": "string" } },
+    "bullet": {
+      "type": "object",
+      "required": ["text"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "tags": { "$ref": "#/$defs/tags" }
+      }
+    },
+    "bullets": { "type": "array", "items": { "$ref": "#/$defs/bullet" } },
+    "link": {
+      "type": "object",
+      "required": ["label", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string" },
+        "url": { "type": "string" },
+        "icon": { "type": "string", "description": "FontAwesome 4 name without the 'fa' prefix, e.g. Github, LinkedinSquare, Globe" }
+      }
+    },
+    "position": {
+      "type": "object",
+      "required": ["company", "role", "start"],
+      "additionalProperties": false,
+      "properties": {
+        "company": { "type": "string" },
+        "url": { "type": "string" },
+        "role": { "type": "string" },
+        "location": { "type": "string" },
+        "work_mode": { "type": "string", "description": "e.g. 'À distance' / 'Remote'" },
+        "start": { "type": "string" },
+        "end": { "type": "string", "description": "Omit for a current position" },
+        "tags": { "$ref": "#/$defs/tags" },
+        "bullets": { "$ref": "#/$defs/bullets" },
+        "technologies": { "$ref": "#/$defs/strings" }
+      }
+    }
+  },
+  "properties": {
+    "$comment": { "type": "string" },
+    "lang": { "enum": ["fr", "en"], "description": "Language of section headings. Default fr." },
+    "basics": {
+      "type": "object",
+      "required": ["name", "email"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "title": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "location": { "type": "string" },
+        "links": { "type": "array", "items": { "$ref": "#/$defs/link" } }
+      }
+    },
+    "summary": {
+      "type": "string",
+      "description": "Tailored files: the summary to print (omit for none). Master files: optional default."
+    },
+    "summary_variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "label": { "type": "string" },
+          "text": { "type": "string" },
+          "tags": { "$ref": "#/$defs/tags" }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["category", "items"],
+        "additionalProperties": false,
+        "properties": {
+          "category": { "type": "string" },
+          "items": { "$ref": "#/$defs/strings" },
+          "tags": { "$ref": "#/$defs/tags" }
+        }
+      }
+    },
+    "experience": { "type": "array", "items": { "$ref": "#/$defs/position" } },
+    "internships": { "type": "array", "items": { "$ref": "#/$defs/position" } },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["institution", "degree"],
+        "additionalProperties": false,
+        "properties": {
+          "institution": { "type": "string" },
+          "url": { "type": "string" },
+          "degree": { "type": "string" },
+          "location": { "type": "string" },
+          "start": { "type": "string" },
+          "end": { "type": "string" },
+          "details": { "$ref": "#/$defs/strings" },
+          "tags": { "$ref": "#/$defs/tags" }
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "url": { "type": "string" },
+          "links": { "type": "array", "items": { "$ref": "#/$defs/link" }, "description": "e.g. store pages, repo" },
+          "date": { "type": "string" },
+          "description": { "type": "string" },
+          "tags": { "$ref": "#/$defs/tags" },
+          "bullets": { "$ref": "#/$defs/bullets" },
+          "technologies": { "$ref": "#/$defs/strings" }
+        }
+      }
+    },
+    "certifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "issuer": { "type": "string" },
+          "date": { "type": "string" },
+          "tags": { "$ref": "#/$defs/tags" }
+        }
+      }
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["language"],
+        "additionalProperties": false,
+        "properties": {
+          "language": { "type": "string" },
+          "level": { "type": "string" }
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "description": "Tailored files only.",
+      "required": ["company", "role"],
+      "additionalProperties": false,
+      "properties": {
+        "company": { "type": "string" },
+        "role": { "type": "string" },
+        "date": { "type": "string" },
+        "source": { "type": "string" }
+      }
+    },
+    "cover_letter": {
+      "type": "object",
+      "description": "Tailored files only.",
+      "required": ["greeting", "paragraphs", "closing"],
+      "additionalProperties": false,
+      "properties": {
+        "date": { "type": "string" },
+        "recipient": { "$ref": "#/$defs/strings" },
+        "subject": { "type": "string" },
+        "greeting": { "type": "string" },
+        "paragraphs": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "closing": { "type": "string" }
+      }
+    }
+  }
+}

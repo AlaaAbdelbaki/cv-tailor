@@ -1,0 +1,283 @@
+{
+  "$comment": "Fictional sample. Copy to data/master_cv.json and replace with your own content. 'target' and 'cover_letter' are only here so --example can render both documents; your master file doesn't need them.",
+  "lang": "en",
+  "basics": {
+    "name": "Léa Moreau-Núñez",
+    "title": "Senior Backend Engineer",
+    "email": "lea.moreau_dev@example.com",
+    "phone": "+33 6 12 34 56 78",
+    "location": "Lyon, France",
+    "links": [
+      {
+        "label": "linkedin.com/in/lea-example",
+        "url": "https://www.linkedin.com/in/lea-example",
+        "icon": "LinkedinSquare"
+      },
+      {
+        "label": "github.com/lea-example",
+        "url": "https://github.com/lea-example",
+        "icon": "Github"
+      }
+    ]
+  },
+  "summary": "Backend engineer with 7 years building high-traffic Python & Go services. I care about reliability, clear APIs and helping teams ship faster.",
+  "summary_variants": [
+    {
+      "label": "backend",
+      "text": "Backend engineer with 7 years building high-traffic Python & Go services. I care about reliability, clear APIs and helping teams ship faster.",
+      "tags": [
+        "backend",
+        "python",
+        "go"
+      ]
+    },
+    {
+      "label": "lead",
+      "text": "Engineering lead who has grown and mentored teams of 4-8 while staying hands-on with distributed systems.",
+      "tags": [
+        "leadership"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "category": "Languages",
+      "items": [
+        "Python",
+        "Go",
+        "SQL",
+        "C#"
+      ],
+      "tags": [
+        "python",
+        "go"
+      ]
+    },
+    {
+      "category": "Infrastructure",
+      "items": [
+        "Kubernetes",
+        "Docker",
+        "Terraform",
+        "AWS"
+      ],
+      "tags": [
+        "kubernetes",
+        "cloud"
+      ]
+    },
+    {
+      "category": "Data",
+      "items": [
+        "PostgreSQL",
+        "Redis",
+        "Kafka",
+        "Airflow"
+      ],
+      "tags": [
+        "data"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "company": "Railwise",
+      "role": "Senior Backend Engineer",
+      "location": "Lyon, France",
+      "start": "Mar 2021",
+      "end": "Present",
+      "tags": [
+        "backend",
+        "python",
+        "go"
+      ],
+      "bullets": [
+        {
+          "text": "Cut p99 latency of the ticket-search API by 45% by redesigning its caching layer (Redis, Go).",
+          "tags": [
+            "performance",
+            "go",
+            "redis"
+          ]
+        },
+        {
+          "text": "Led migration of 30+ services from a monolith to Kubernetes with zero customer-facing downtime.",
+          "tags": [
+            "kubernetes",
+            "migration",
+            "leadership"
+          ]
+        },
+        {
+          "text": "Mentored 4 engineers; two were promoted within 18 months.",
+          "tags": [
+            "leadership",
+            "mentoring"
+          ]
+        },
+        {
+          "text": "Introduced contract tests & on-call runbooks, reducing incident count by 30% year over year.",
+          "tags": [
+            "reliability",
+            "testing"
+          ]
+        }
+      ],
+      "work_mode": "Hybrid",
+      "url": "https://example.com",
+      "technologies": [
+        "Go",
+        "Python",
+        "Redis",
+        "Kubernetes"
+      ]
+    },
+    {
+      "company": "DataNest SAS",
+      "role": "Software Engineer",
+      "location": "Paris, France",
+      "start": "Sep 2018",
+      "end": "Feb 2021",
+      "tags": [
+        "python",
+        "data"
+      ],
+      "bullets": [
+        {
+          "text": "Built a Django + PostgreSQL billing service processing EUR 2M/month.",
+          "tags": [
+            "python",
+            "django",
+            "postgres"
+          ]
+        },
+        {
+          "text": "Wrote ETL pipelines in Airflow feeding the company's analytics warehouse (~50 GB/day).",
+          "tags": [
+            "data",
+            "airflow",
+            "etl"
+          ]
+        },
+        {
+          "text": "Added type hints and CI checks (mypy, ruff) across a 120k-line codebase.",
+          "tags": [
+            "python",
+            "quality"
+          ]
+        }
+      ],
+      "technologies": [
+        "Python",
+        "Django",
+        "PostgreSQL",
+        "Airflow"
+      ]
+    }
+  ],
+  "internships": [
+    {
+      "company": "Acme Labs",
+      "role": "Software Engineering Intern",
+      "location": "Grenoble, France",
+      "start": "02/2018",
+      "end": "08/2018",
+      "tags": [
+        "python"
+      ],
+      "bullets": [
+        {
+          "text": "Prototyped a log-parsing CLI in Python used by 3 internal teams.",
+          "tags": [
+            "python",
+            "tooling"
+          ]
+        }
+      ],
+      "technologies": [
+        "Python",
+        "Click"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "INSA Lyon",
+      "degree": "MSc Computer Science",
+      "location": "Lyon, France",
+      "start": "2013",
+      "end": "2018",
+      "details": [
+        "Thesis: consistency models for geo-replicated databases"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "pg_snapshot_diff",
+      "url": "https://github.com/lea-example/pg_snapshot_diff",
+      "date": "2023",
+      "description": "Open-source tool to diff PostgreSQL schema snapshots; 600+ GitHub stars.",
+      "tags": [
+        "postgres",
+        "open-source"
+      ],
+      "links": [
+        {
+          "label": "PyPI",
+          "url": "https://pypi.org/project/example"
+        }
+      ],
+      "technologies": [
+        "Python",
+        "PostgreSQL"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Certified Kubernetes Application Developer (CKAD)",
+      "issuer": "CNCF",
+      "date": "2022",
+      "tags": [
+        "kubernetes"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "French",
+      "level": "Native"
+    },
+    {
+      "language": "English",
+      "level": "Fluent (C1)"
+    },
+    {
+      "language": "Spanish",
+      "level": "Conversational"
+    }
+  ],
+  "target": {
+    "company": "Example Corp",
+    "role": "Staff Backend Engineer",
+    "date": "15 November 2026"
+  },
+  "cover_letter": {
+    "date": "15 November 2026",
+    "recipient": [
+      "Hiring Team",
+      "Example Corp",
+      "Berlin, Germany"
+    ],
+    "subject": "Application for Staff Backend Engineer",
+    "greeting": "Dear Hiring Team,",
+    "paragraphs": [
+      "I'm applying for the Staff Backend Engineer role at Example Corp. Your focus on low-latency APIs at scale matches the work I've done for the past seven years.",
+      "At Railwise I cut p99 latency of our ticket-search API by 45% and led the migration of 30+ services to Kubernetes with zero customer-facing downtime. Before that, at DataNest, I built a billing service processing EUR 2M/month.",
+      "I also enjoy growing engineers: I've mentored four, two of whom were promoted within 18 months. I'd bring the same mix of hands-on delivery and team support to Example Corp.",
+      "Thank you for your time. I'd welcome the chance to discuss how I can help your platform team."
+    ],
+    "closing": "Kind regards,"
+  }
+}

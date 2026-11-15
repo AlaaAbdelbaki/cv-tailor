@@ -1,0 +1,189 @@
+%----------------------------------------------------------------------------------------
+% CV template (Jinja2 + LaTeX). Layout from the "Developer CV" class (LaTeXTemplates.com, MIT).
+% All content comes from the JSON file; nothing personal is hard-coded here.
+% Rendered by scripts/render.py with pdflatex.
+%----------------------------------------------------------------------------------------
+\documentclass[9pt]{developercv}
+\BLOCK{ include "_language.tex.j2" }
+\usepackage{multicol}
+\setlength{\columnsep}{0mm}
+\usepackage{float}
+\usepackage{tabularx}
+
+\BLOCK{ macro linked(text, url) }\BLOCK{ if url }\href{\VAR{url}}{\VAR{text}}\BLOCK{ else }\VAR{text}\BLOCK{ endif }\BLOCK{ endmacro }
+
+\BLOCK{ macro dates(start, end) }\VAR{start or ""}\BLOCK{ if start and end } -- \BLOCK{ endif }\VAR{end or ""}\BLOCK{ endmacro }
+
+\BLOCK{ macro bullets(items, margin="-1pt") }
+        \begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt, leftmargin=\VAR{margin}]
+\BLOCK{ for b in items }
+            \item \VAR{b.text if b.text is defined else b}
+\BLOCK{ endfor }
+        \end{itemize}
+\BLOCK{ endmacro }
+
+\BLOCK{ macro position(job) }
+    \entry
+    {\VAR{job.start} -- \VAR{job.end or labels.present}\BLOCK{ if job.location }\\\VAR{job.location}\BLOCK{ endif }\BLOCK{ if job.work_mode }\\(\VAR{job.work_mode})\BLOCK{ endif }}
+    {\VAR{job.role}}
+    {\VAR{linked(job.company, job.url)}}
+    {\vspace{-10pt}
+\BLOCK{ if job.bullets }
+\VAR{bullets(job.bullets)}
+\BLOCK{ endif }
+\BLOCK{ if job.technologies }
+        \textbf{\VAR{labels.technologies}: }\VAR{job.technologies | ttlist}
+\BLOCK{ endif }
+    }
+\BLOCK{ endmacro }
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE AND CONTACT INFORMATION
+%----------------------------------------------------------------------------------------
+\BLOCK{ include "_header.tex.j2" }
+
+\BLOCK{ if summary }
+%----------------------------------------------------------------------------------------
+%	SUMMARY
+%----------------------------------------------------------------------------------------
+\vspace{-10pt}
+\cvsect{\VAR{labels.summary}}\par
+\vspace{-4pt}
+\VAR{summary}\par
+\vspace{10pt}
+
+\BLOCK{ endif }
+
+\BLOCK{ if skills }
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+\vspace{-10pt}
+\begin{minipage}[t]{\textwidth}
+    \cvsect{\VAR{labels.skills}}\\
+\BLOCK{ for s in skills }
+    \vspace{6pt}
+    \textbf{\VAR{s.category}: } \VAR{s["items"] | ttlist}\BLOCK{ if not loop.last }\\\BLOCK{ endif }
+
+\BLOCK{ endfor }
+\end{minipage}
+\BLOCK{ endif }
+
+\BLOCK{ if experience }
+%----------------------------------------------------------------------------------------
+%	EXPERIENCE
+%----------------------------------------------------------------------------------------
+\vspace{-10 pt}
+\cvsect{\VAR{labels.experience}}
+\begin{entrylist}
+\BLOCK{ for job in experience }
+\VAR{position(job)}
+\BLOCK{ endfor }
+\end{entrylist}
+\BLOCK{ endif }
+
+\BLOCK{ if internships }
+%----------------------------------------------------------------------------------------
+%	INTERNSHIPS
+%----------------------------------------------------------------------------------------
+\vspace{-20 pt}
+\cvsect{\VAR{labels.internships}}
+\begin{entrylist}
+\BLOCK{ for job in internships }
+\VAR{position(job)}
+\BLOCK{ endfor }
+\end{entrylist}
+\BLOCK{ endif }
+
+\BLOCK{ if education }
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+\vspace{-20 pt}
+\cvsect{\VAR{labels.education}}
+\begin{entrylist}
+\BLOCK{ for e in education }
+    \entry
+    {\VAR{dates(e.start, e.end)}\BLOCK{ if e.location }\\\VAR{e.location}\BLOCK{ endif }}
+    {\VAR{e.degree}
+        \vspace{-10pt}
+    }
+    {\VAR{linked(e.institution, e.url)}}
+    {
+\BLOCK{ if e.details }
+        \VAR{bullets(e.details, "0pt") | trim}
+\BLOCK{ endif }
+    }
+\BLOCK{ endfor }
+\end{entrylist}
+\BLOCK{ endif }
+
+\BLOCK{ if projects }
+%----------------------------------------------------------------------------------------
+%	PROJECTS
+%----------------------------------------------------------------------------------------
+\vspace{-20 pt}
+\cvsect{\VAR{labels.projects}}
+\begin{entrylist}
+\BLOCK{ for p in projects }
+    \entry
+    {\VAR{p.date or ""}}
+    {\VAR{linked(p.name, p.url)}}
+    {
+\BLOCK{ for l in p.links or [] }
+        \href{\VAR{l.url}}{\VAR{l.label}}\BLOCK{ if not loop.last } \& \BLOCK{ endif }
+\BLOCK{ endfor }
+    }
+    {% \vspace{-10pt} only cancels the empty line before a list; with text first it would pull the next line up
+\BLOCK{ if p.description }
+        \VAR{p.description}\BLOCK{ if p.technologies and not p.bullets }\\\BLOCK{ endif }
+\BLOCK{ elif p.bullets }
+        \vspace{-10pt}
+\BLOCK{ endif }
+\BLOCK{ if p.bullets }
+\VAR{bullets(p.bullets)}
+\BLOCK{ endif }
+\BLOCK{ if p.technologies }
+        \textbf{\VAR{labels.technologies}: }\VAR{p.technologies | ttlist}
+\BLOCK{ endif }
+    }
+\BLOCK{ endfor }
+\end{entrylist}
+\BLOCK{ endif }
+
+\BLOCK{ if certifications }
+%----------------------------------------------------------------------------------------
+%	CERTIFICATIONS
+%----------------------------------------------------------------------------------------
+\vspace{-20 pt}
+\cvsect{\VAR{labels.certifications}}
+\vspace{-6pt}
+
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt, leftmargin=0.18\textwidth]
+\BLOCK{ for c in certifications }
+    \item \textbf{\VAR{c.name}}\BLOCK{ if c.issuer } -- \VAR{c.issuer}\BLOCK{ endif }\BLOCK{ if c.date } (\VAR{c.date})\BLOCK{ endif }
+
+\BLOCK{ endfor }
+\end{itemize}
+\vspace{20pt} % the next section starts with -20pt to compensate for longtable spacing; a list has none
+\BLOCK{ endif }
+
+\BLOCK{ if languages }
+%----------------------------------------------------------------------------------------
+%	LANGUAGES
+%----------------------------------------------------------------------------------------
+\vspace{-20 pt}
+\cvsect{\VAR{labels.languages}}
+\vspace{-6pt}
+
+\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt, leftmargin=0.18\textwidth]
+\BLOCK{ for l in languages }
+    \item \textbf{\VAR{l.language}}\BLOCK{ if l.level } - \VAR{l.level}\BLOCK{ endif }
+
+\BLOCK{ endfor }
+\end{itemize}
+\BLOCK{ endif }
+
+\end{document}
