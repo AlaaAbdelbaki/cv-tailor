@@ -1,4 +1,4 @@
-# cv-cover-gen
+# cv-tailor
 
 A [Claude Code](https://claude.com/claude-code) skill that tailors your CV and writes a cover letter for a specific job posting, then renders both to PDF with LaTeX.
 
